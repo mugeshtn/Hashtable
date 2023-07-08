@@ -38,14 +38,20 @@ class LinkedList{
 
     }
         getKey(){
-          
-            let temp = this.head;
-            
-            while(temp !== this.tail){
-                return temp.key;
-            }
-            temp = temp.next;
            
+            let temp = this.head;
+           if(this.length === 1) {
+            return temp.key; 
+           }
+          else{
+            let values = []
+           while(temp){
+            values.push(temp.key);
+              temp = temp.next;
+           }
+            return values;
+          }
+          
         }
         
    
@@ -83,12 +89,14 @@ class HashTable{
     }
 
     getKeys(){
-        let  allKeys = [];
-     for(let i = 0; i < this.datamap.length; i++){
-        if(this.datamap[i]){
-          return allKeys.push(this.datamap[i].getKey()); 
-        }
-     }
+              let allKeys = [], value;
+            for(let i = 0 ; i < this.datamap.length; i++){
+                if(this.datamap[i]){
+                    value = this.datamap[i].getKey();
+                    allKeys.push(value);
+                }
+            }
+    console.log(allKeys);
     }
     }
 
@@ -97,6 +105,6 @@ h.set("nails", 1500);
 h.set("lumbars", 700);
 h.set("washers", 100);
 h.set("bolts", 5400);
-
+h.getKeys();
 h.get("lumbars");
 
