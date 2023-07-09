@@ -92,8 +92,7 @@ class HashTable{
               let allKeys = [], value;
             for(let i = 0 ; i < this.datamap.length; i++){
                 if(this.datamap[i]){
-                    value = this.datamap[i].getKey();
-                    allKeys.push(value);
+                    allKeys.push(this.datamap[i].getKey());
                 }
             }
     console.log(allKeys);
