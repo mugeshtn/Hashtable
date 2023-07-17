@@ -11,6 +11,8 @@ class BST{
         this.root = null;
     }
 
+
+    //inserting the value to the tree:
     insert(value){
         const newNode = new Node(value);
 
@@ -39,6 +41,9 @@ class BST{
         }
     }
 
+
+
+//Return whether the tree contains the given value:
     contains(value){
 
         if(!this.root) return false;
@@ -56,6 +61,57 @@ class BST{
         return false;
     }
 
+// Find the min value:
+    min(node){
+     if(!node.left) return node;
+     else{
+        return this.min(node.left);
+     }
+    }
+
+
+    // Remove a node from the BST.
+    remove(value) {
+     this._removeItem(this.root, value);
+    }
+    
+    _removeItem(node, value) {
+        if (!node) return null;
+
+        if (value < node.value) {
+
+            node.left = this._removeItem(node.left, value);
+        }
+      
+        else if (value > node.value) {
+           
+            node.right = this._removeItem(node.right, value);
+        }
+       
+        else {
+           
+            if (!node.left && !node.right) return node;
+
+        
+            if (node.left && !node.right) {
+                return node.left;
+            } else if (node.right && !node.left) {
+                return node.right;
+            }
+
+            let minRight = this.min(node.right);
+
+            node.value = minRight.value;
+
+            node.right = this._removeItem(node.right, minRight.value);
+ 
+        }
+        return node;
+
+    }
+
+
+    //Breadth First Search
     Bfs(){
         let queue = [];
         let results = [];
@@ -73,7 +129,9 @@ class BST{
      return results;
     }
 
+//Depth First search
 
+//inorder - lowest to the highest:
     DfsInorder(){
         let results = [];
         function traverse(node){
@@ -84,6 +142,8 @@ class BST{
         traverse(this.root);
         return results;
     }
+
+    //preorder - left - right - middle;
     DfsPreorder(){
         let results = [];
 
@@ -106,18 +166,34 @@ class BST{
         traverse(this.root);
         return results;
     }
+    findDepth(node) {
+      
+        if (node) {
+           
+            let leftDepth = this.findDepth(node.left);
+             
+            let rightDepth = this.findDepth(node.right);
+              
+            return Math.max(leftDepth, rightDepth) + 1;
+
+        }     
+    return 0;
+    }
+
 }
 
 const tree = new BST();
 
 tree.insert(20);
-tree.insert(22);
-tree.insert(4);
-tree.insert(10);
-tree.insert(8);
-tree.insert(12);
-tree.insert(14);
+tree.insert(15);
 tree.insert(25);
+tree.insert(14);
+tree.insert(16)
+tree.insert(19);
+tree.insert(24);
+tree.insert(27);
+tree.insert(29);
+tree.insert(42);
 
-console.log(tree.Bfs());
-
+// console.log(tree.DfsPostorder());
+console.log(tree.findDepth(tree.root));
