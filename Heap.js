@@ -69,7 +69,81 @@ class maxBinaryHeap{
 }
 
 
-const h = new maxBinaryHeap();
+
+
+
+class minBinaryHeap{
+    constructor(){
+        this.values = new Array();
+    }
+
+    insert(value){
+
+        this.values.push(value);
+
+        // addValIndex refers index where the values added and gets changed;
+        let addValIndex = this.values.length - 1;
+
+        while(true){
+            let parentIndex = Math.floor((addValIndex - 1)/2);
+
+            if(!this.values[parentIndex]) break;
+
+            if(this.values[parentIndex] <= this.values[addValIndex]) break;
+
+
+            [this.values[parentIndex], this.values[addValIndex]] = [this.values[addValIndex], this.values[parentIndex]];
+
+             addValIndex = parentIndex;
+        }
+        return this.values;
+    }
+
+    extractMin(){
+        let lastindex = this.values.length - 1;
+
+        [this.values[0], this.values[lastindex]] = [this.values[lastindex], this.values[0]];
+
+        let Smallest = this.values.pop();
+
+        let currIndex = 0;
+
+        while(true){
+
+          let lchildIndex = (currIndex * 2) + 1;
+          let rchildIndex = (currIndex * 2) + 2;
+//gValIndex refers greater value changing index;
+          let lValIndex = currIndex; 
+
+
+          if(lchildIndex < this.values.length){
+            if(this.values[lchildIndex] > this.values[lValIndex]){
+                lValIndex = lchildIndex; 
+            }
+          }
+
+
+
+          if(rchildIndex < this.values.length){
+            if(this.values[rchildIndex] > this.values[lValIndex]){
+                lValIndex = rchildIndex;
+            }
+          }
+
+
+          if(lValIndex === currIndex) break;
+
+           [ this.values[lValIndex], this.values[currIndex]] = [this.values[currIndex], this.values[lValIndex]];
+
+             currIndex = lValIndex ;
+
+        }
+        return Smallest;
+    }
+}
+
+
+const h = new minBinaryHeap();
 
 h.insert(20);
 h.insert(15);
@@ -82,4 +156,4 @@ h.insert(27);
 h.insert(29);
 h.insert(42);
 
-console.log(h.extractMax())
+console.log(h.extractMin())
