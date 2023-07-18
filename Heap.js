@@ -142,18 +142,63 @@ class minBinaryHeap{
     }
 }
 
+// const h = new minBinaryHeap();
 
-const h = new minBinaryHeap();
+// h.insert(20);
+// h.insert(15);
+// h.insert(25);
+// h.insert(14);
+// h.insert(16)
+// h.insert(19);
+// h.insert(24);
+// h.insert(27);
+// h.insert(29);
+// h.insert(42);
 
-h.insert(20);
-h.insert(15);
-h.insert(25);
-h.insert(14);
-h.insert(16)
-h.insert(19);
-h.insert(24);
-h.insert(27);
-h.insert(29);
-h.insert(42);
+// console.log(h.extractMin())
 
-console.log(h.extractMin())
+
+//making the array to max heap;
+function heapify(arr, length, parentIndex){
+   
+    let gValIndex = parentIndex;
+    let lchild = (parentIndex*2) + 1;
+    let rchild = (parentIndex*2) + 2
+   
+
+    if(lchild < length && arr[lchild] > arr[gValIndex])gValIndex = lchild;
+
+    
+    if(rchild < length && arr[rchild] > arr[gValIndex])gValIndex = rchild;
+  
+
+    if(gValIndex !== parentIndex) {
+    [arr[gValIndex], arr[parentIndex]] = [arr[parentIndex] ,arr[gValIndex]];
+ 
+      heapify(arr, length, gValIndex);
+    }
+    return arr;
+}
+     
+
+
+function heapSort(arr){
+    let length = arr.length - 1 ;
+    let lastParent = Math.floor((length - 1)/2);
+    let lastChild = length  ;
+
+    while(lastParent >= 0){
+        heapify(arr, length, lastParent);
+        lastParent --;
+    }
+    while(lastChild >= 0){
+        [arr[0], arr[lastChild]] = [arr[lastChild], arr[0]];
+        heapify(arr, lastChild, 0);
+        lastChild --;
+    }
+  return arr;
+}
+
+
+let arr = [12, 8, 5, 3, 9, 10];
+console.log(heapSort(arr));
