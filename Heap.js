@@ -20,7 +20,7 @@ class maxBinaryHeap{
 
             [this.values[parentIndex], this.values[addValIndex]] = [this.values[addValIndex], this.values[parentIndex]];
 
-            addValIndex = parentIndex;
+             addValIndex = parentIndex;
         }
         return this.values;
     }
@@ -42,26 +42,26 @@ class maxBinaryHeap{
           let gValIndex = currIndex; 
 
 
-         if(lchildIndex < this.values.length){
+          if(lchildIndex < this.values.length){
             if(this.values[lchildIndex] > this.values[gValIndex]){
                 gValIndex = lchildIndex; 
             }
-         }
+          }
 
 
 
-         if(rchildIndex < this.values.length){
+          if(rchildIndex < this.values.length){
             if(this.values[rchildIndex] > this.values[gValIndex]){
                 gValIndex = rchildIndex;
             }
-         }
+          }
 
 
           if(gValIndex === currIndex) break;
 
-    [ this.values[gValIndex], this.values[currIndex]] = [this.values[currIndex], this.values[gValIndex]];
+           [ this.values[gValIndex], this.values[currIndex]] = [this.values[currIndex], this.values[gValIndex]];
 
-    currIndex = gValIndex ;
+             currIndex = gValIndex ;
 
         }
         return largest;

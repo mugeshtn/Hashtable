@@ -180,6 +180,19 @@ class BST{
     return 0;
     }
 
+    validation(){
+        function isBST(node, min, max){
+            if(node === null)return true;
+
+            if(node.value <= min || node.value >= max) return false;
+
+
+            return(isBST(node.left, min, node.value) && isBST(node.right, node.value, max));
+        }
+
+        return isBST(this.root, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY);
+    }
+
 }
 
 const tree = new BST();
@@ -194,6 +207,7 @@ tree.insert(24);
 tree.insert(27);
 tree.insert(29);
 tree.insert(42);
+console.log(tree.validation())
 
 // console.log(tree.DfsPostorder());
 console.log(tree.findDepth(tree.root));
