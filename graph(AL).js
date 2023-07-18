@@ -49,25 +49,77 @@ class Graph{
        delete this.adjacencyList[vertex];
        return this;
     }
+
+
+    bfs(start){ //use shift function
+           let queue = [start];
+
+           let visited = new Set([start]);
+
+           let results = [];
+
+    while(queue.length){
+        let curr = queue.shift();
+        results.push(curr);
+        for ( let neighbour of this.adjacencyList[curr]){
+            if(!visited.has(neighbour)){
+                visited.add(neighbour);
+                queue.push(neighbour);
+            }
+        }
+     
+    }
+    return results;
+    }
+
+
+    
+    dfs(start){ //use shift function
+        let stack = [start];
+
+        let visited = new Set([start]);
+
+        let results = [];
+
+ while(stack.length){
+     let curr = stack.pop();
+     results.push(curr);
+     console.log(curr)
+     for ( let neighbour of this.adjacencyList[curr]){
+        console.log(neighbour);
+        break;
+         if(!visited.has(neighbour)){
+             visited.add(neighbour);
+             stack.push(neighbour);
+         }
+     }
+  
+ }
+ return results;
+ }
 }
 
 
 const graph = new Graph();
 
 graph.addVertex("A");
-graph.addVertex("B");
 graph.addVertex("C");
+graph.addVertex("B");
+graph.addVertex("D");
 
 graph.addEdge("A", "B");
 graph.addEdge("A", "C");
 graph.addEdge("C", "B");
+graph.addEdge("D", "A");
+graph.addEdge("D", "B");
+graph.addEdge("D", "C");
 
-console.log(graph);
+
+// console.log(graph);
 
 // graph.delEdge("A","C");
 // console.log(graph);
 
-
-graph.delVertex("C");
-console.log(graph);
+console.log(graph.dfs("A"));
+console.log(graph.bfs("A"));
 
