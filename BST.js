@@ -121,10 +121,11 @@ class BST{
 
      while(queue.length){
         node = queue.shift();
-        results.push(node.value);
-
+       
+       
         if(node.left) queue.push(node.left);
         if(node.right) queue.push(node.right);
+        results.push(node.value);
      }
      return results;
     }
@@ -207,7 +208,8 @@ tree.insert(24);
 tree.insert(27);
 tree.insert(29);
 tree.insert(42);
-console.log(tree.validation())
+//console.log(tree.validation())
 
-// console.log(tree.DfsPostorder());
-console.log(tree.findDepth(tree.root));
+
+console.log(tree.Bfs());
+//console.log(tree.findDepth(tree.root));
