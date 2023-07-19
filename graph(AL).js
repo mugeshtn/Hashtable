@@ -25,7 +25,7 @@ class Graph{
          return false;
     }
 
-    delEdge(vertex1, vertex2){
+    removeEdge(vertex1, vertex2){
         if(this.adjacencyList[vertex1] && this.adjacencyList[vertex2]){
             //filtering all elements into vertex1 array except vertex 2;
             this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2);
@@ -35,7 +35,7 @@ class Graph{
         return false;
     }
 
-    delVertex(vertex){
+    removeVertex(vertex){
         if(!this.adjacencyList[vertex]) return `vertex absent`;
 
 
@@ -43,7 +43,7 @@ class Graph{
        while(this.adjacencyList[vertex].length){
         let temp = this.adjacencyList[vertex].pop();
 
-        this.delEdge(vertex, temp);
+        this.removeEdge(vertex, temp);
        }
        //Deleting the vertex;
        delete this.adjacencyList[vertex];
@@ -115,7 +115,7 @@ graph.addEdge("D", "C");
 
 // console.log(graph);
 
-// graph.delEdge("A","C");
+// graph.removeEdge("A","C");
 // console.log(graph);
 
 console.log(graph.dfs("A"));
