@@ -158,7 +158,18 @@ class minBinaryHeap{
 // console.log(h.extractMin())
 
 
-//making the array to max heap;
+function heapifyMax(arr){
+    let length = arr.length  ;
+    let lastParent = Math.floor(length/2 - 1);
+    
+
+    while(lastParent >= 0){
+        heapify(arr, length, lastParent);
+        lastParent --;
+    }
+    return arr;
+}
+
 function heapify(arr, length, parentIndex){
    
     let gValIndex = parentIndex;
@@ -166,14 +177,14 @@ function heapify(arr, length, parentIndex){
     let rchild = (parentIndex*2) + 2
    
 
-    if(lchild < length && arr[lchild] > arr[gValIndex])gValIndex = lchild;
+    if(lchild < length && arr[lchild] >= arr[gValIndex])gValIndex = lchild;
 
     
-    if(rchild < length && arr[rchild] > arr[gValIndex])gValIndex = rchild;
+    if(rchild < length && arr[rchild] >= arr[gValIndex])gValIndex = rchild;
   
 
     if(gValIndex !== parentIndex) {
-    [arr[gValIndex], arr[parentIndex]] = [arr[parentIndex] ,arr[gValIndex]];
+    [arr[gValIndex], arr[parentIndex]] = [arr[parentIndex] , arr[gValIndex]];
  
       heapify(arr, length, gValIndex);
     }
@@ -183,9 +194,9 @@ function heapify(arr, length, parentIndex){
 
 
 function heapSort(arr){
-    let length = arr.length - 1 ;
-    let lastParent = Math.floor((length - 1)/2);
-    let lastChild = length  ;
+    let length = arr.length  ;
+    let lastParent = Math.floor(length/2 - 1);
+    let lastChild = length - 1 ;
 
     while(lastParent >= 0){
         heapify(arr, length, lastParent);
@@ -200,5 +211,5 @@ function heapSort(arr){
 }
 
 
-let arr = [12, 8, 5, 3, 9, 10];
-console.log(heapSort(arr));
+let arr = [2, 8, 5, 3, 9, 1, 11];
+console.log(heapifyMax(arr));
