@@ -3,7 +3,20 @@ class Graph{
         this.adjacencyList = {};
     }
 
+ fromEdgeList(edgeList){
+    for(let [f,s] of edgeList){
+        if(!this.adjacencyList[f]){
+            this.adjacencyList[f] = [];
+        }
+        if(!this.adjacencyList[s]){
+            this.adjacencyList[s] = [];
+        }
 
+
+        this.adjacencyList[f].push(s);
+        this.adjacencyList[s].push(f);
+    }
+ }
     addVertex(vertex){
 
         // creating an array inside the object with the vertex name { A : []; B : []}
