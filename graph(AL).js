@@ -85,9 +85,7 @@ class Graph{
      let curr = stack.pop();
      results.push(curr);
      console.log(curr)
-     for ( let neighbour of this.adjacencyList[curr]){
-        console.log(neighbour);
-        break;
+     for ( let neighbour of this.adjacencyList[curr]){    
          if(!visited.has(neighbour)){
              visited.add(neighbour);
              stack.push(neighbour);
