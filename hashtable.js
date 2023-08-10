@@ -6,7 +6,7 @@ class Node{
     }
 }
 
-class LinkedList{
+class HashTable{
     constructor(){
         this.head = null;
         this.tail = null;
